@@ -1,11 +1,63 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from datetime import datetime
-from .models import Categoria
-from .forms import CategoriaForm
+from .models import Categoria, Produto
+from .forms import CategoriaForm, ProdutoForm
 
 def home(request):
-    context = {}
-    return render(request, 'produto/home.html', context)
+    atualizado_em = datetime.now()
+    produtos = Produto.objects.all()
+    template_name = 'produto/home.html'
+    context = {
+        'produtos': produtos,
+        'atualizado_em': atualizado_em
+    }
+    return render(request, template_name, context)
+
+def novo_produto(request):
+    if request.method == "POST":
+        form = ProdutoForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('produto:home')
+    else:
+        form = ProdutoForm()
+    template_name = 'produto/editar_produto.html'
+    context = {
+        'form': form,
+        'title': 'Registrar produto'
+    }
+    return render(request, template_name, context)
+
+def editar_produto(request, pk):
+    produto = get_object_or_404(Produto, pk=pk)
+    if request.method == "POST":
+        form = ProdutoForm(request.POST, instance=produto)
+        if form.is_valid():
+            form.save()
+            return redirect('produto:home')
+    else:
+        form = ProdutoForm(instance=produto)
+    template_name = 'produto/editar_produto.html'
+    context = {
+        'form': form,
+        'title': 'Editar produto',
+        'produto': produto
+    }
+    return render(request, template_name, context)
+
+def excluir_produto(request, pk):
+    produto = get_object_or_404(Produto, pk=pk)
+
+    if request.method == "POST":
+        produto.delete()
+        return redirect('produto:home')
+    template_name = 'produto/confirmar_delete.html'
+    context = {
+        'objeto': produto,
+        'title': 'Excluir produto',
+        'mensagem': 'Tem certeza que quer deletar o Produto: '
+    }
+    return render(request, template_name, context)
 
 def lista_categorias(request):
     atualizado_em = datetime.now()
@@ -63,8 +115,10 @@ def excluir_categoria(request, pk):
     if request.method == "POST":
         categoria.delete()
         return redirect('produto:lista_categorias')
-    template_name = 'produto/confirmar_excluir_categoria.html'
+    template_name = 'produto/confirmar_delete.html'
     context = {
-        'categoria': categoria
+        'objeto': categoria,
+        'title': 'Excluir categoria',
+        'mensagem': 'Tem certeza que quer deletar a Categoria: '
     }
     return render(request, template_name, context)

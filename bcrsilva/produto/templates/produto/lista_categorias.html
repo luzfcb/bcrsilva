@@ -35,31 +35,29 @@
           </tfoot> -->
           <tbody>
             {% for categoria in categorias %}
-              <a href="#">
-                <tr>
-                  <td>{{ categoria.nome }}</td>
-                  <td>{{ categoria.descricao }}</td>
-                  <td>{{ categoria.atualizado_em }}</td>
-                  <td>
-                    <div class="container">
-                      <div class="row">
-                        <div class="col">
-                          <a href="{% url 'produto:editar_categoria' categoria.id %}"
-                            title="Editar">
-                            <i class="fa fa-pencil fa-lg"></i>
-                          </a>
-                        </div>
-                        <div class="col">
-                          <a href="{% url 'produto:excluir_categoria' categoria.id %}"
-                            title="Excluir">
-                            <i class="fa fa-trash-o fa-lg"></i>
-                          </a>
-                        </div>
+              <tr>
+                <td>{{ categoria.nome }}</td>
+                <td>{{ categoria.descricao }}</td>
+                <td>{{ categoria.atualizado_em }}</td>
+                <td>
+                  <div class="container">
+                    <div class="row">
+                      <div class="col">
+                        <a href="{% url 'produto:editar_categoria' categoria.id %}"
+                          title="Editar">
+                          <i class="fa fa-pencil fa-lg"></i>
+                        </a>
+                      </div>
+                      <div class="col">
+                        <a href="{% url 'produto:excluir_categoria' categoria.id %}"
+                          title="Excluir">
+                          <i class="fa fa-trash-o fa-lg"></i>
+                        </a>
                       </div>
                     </div>
-                  </td>
-                </tr>
-              </a>
+                  </div>
+                </td>
+              </tr>
             {% endfor %}
           </tbody>
         </table>

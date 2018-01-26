@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% load widget_tweaks %}
+
+{% block content %}
+  <div class="card card-register mx-auto" style="max-width: 80%;">
+    <div class="card-header">{{ title }}: {{ produto }}</div>
+    <div class="card-body">
+      <form method="POST">
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+        <div class="form-row">
+          <div class="form-group col-md-4">
+            {{ form.categoria.label_tag }}
+            {% render_field form.categoria class+="form-control" %}
+            {{ form.categoria.errors }}
+          </div>
+          <div class="form-group col-md-6">
+            {{ form.nome.label_tag }}
+            {% render_field form.nome class+="form-control" placeholder+="Informe o nome" %}
+            {{ form.nome.errors }}
+          </div>
+          <div class="form-group col-md-2">
+            {{ form.ncm.label_tag }}
+            {% render_field form.ncm class+="form-control" placeholder+="Informe o NCM" %}
+            {{ form.ncm.errors }}
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            {{ form.descricao.label_tag }}
+            {% render_field form.descricao class+="form-control" style+="resize: none" rows="5" placeholder+="Descreva o produto" %}
+            {{ form.descricao.errors }}
+          </div>
+          <div class="form-row col-md-6" style="margin-left: 5px;">
+            <div class="form-group col-md-6">
+              {{ form.preco_custo.label_tag }}
+              {% render_field form.preco_custo class+="form-control" placeholder+="Informe o custo" style+="margin-bottom: 26px" %}
+              {{ form.preco_custo.errors }}
+
+              {{ form.unidade_medida.label_tag }}
+              {% render_field form.unidade_medida class+="form-control" %}
+              {{ form.unidade_medida.errors }}
+            </div>
+            <div class="form-group col-md-6">
+              {{ form.preco_venda.label_tag }}
+              {% render_field form.preco_venda class+="form-control" placeholder+="Informe o custo" style+="margin-bottom: 26px" %}
+              {{ form.preco_venda.errors }}
+
+              {{ form.multiplo.label_tag }}
+              {% render_field form.multiplo class+="form-control" %}
+              {{ form.multiplo.errors }}
+            </div>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-success">Salvar</button>
+        <a class="btn btn-secondary" href="{% url 'produto:home' %}">Voltar</a>
+      </form>
+    </div>
+  </div>
+{% endblock %}
