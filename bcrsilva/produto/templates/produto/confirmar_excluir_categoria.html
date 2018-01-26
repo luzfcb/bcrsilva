@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <form method="post">
+    {% csrf_token %}
+
+    <div class="well">
+      <p>Tem certeza que quer deletar a Categoria: "{{ categoria }}"?</p>
+      <button class="btn btn-danger" type="submit"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> Tenho certeza!</button>
+    </div>
+  </form>
+{% endblock %}
