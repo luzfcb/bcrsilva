@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from datetime import datetime
 from .models import Categoria
 from .forms import CategoriaForm
 
@@ -7,10 +8,12 @@ def home(request):
     return render(request, 'produto/home.html', context)
 
 def lista_categorias(request):
+    atualizado_em = datetime.now()
     categorias = Categoria.objects.all()
     template_name = 'produto/lista_categorias.html'
     context = {
-        'categorias': categorias
+        'categorias': categorias,
+        'atualizado_em': atualizado_em
     }
     return render(request, template_name, context)
 
@@ -32,7 +35,8 @@ def nova_categoria(request):
         form = CategoriaForm()
     template_name = 'produto/editar_categoria.html'
     context = {
-        'form': form
+        'form': form,
+        'title': 'Registrar categoria'
     }
     return render(request, template_name, context)
 
@@ -47,7 +51,9 @@ def editar_categoria(request, pk):
         form = CategoriaForm(instance=categoria)
     template_name = 'produto/editar_categoria.html'
     context = {
-        'form': form
+        'form': form,
+        'title': 'Editar categoria',
+        'categoria': categoria
     }
     return render(request, template_name, context)
 
