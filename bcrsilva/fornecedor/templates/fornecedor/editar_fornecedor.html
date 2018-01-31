@@ -1,0 +1,102 @@
+{% extends "base.html" %}
+
+{% load widget_tweaks %}
+
+{% block content %}
+  <div class="card card-register mx-auto" style="max-width: 80%;">
+    <div class="card-header">{{ title }}: "{{ fornecedor }}"</div>
+    <div class="card-body">
+      <form method="POST">
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+        <div class="form-row">
+          <div class="form-group col-md-4">
+            {{ form.razao_social.label_tag }}
+            {% render_field form.razao_social class+="form-control" %}
+            {{ form.razao_social.errors }}
+          </div>
+          <!-- <div>
+            <a class="btn btn-success" href="{% url 'produto:nova_categoria' %}"
+              title="Novo produto" style="margin-top: 32px;">
+              <i class="fa fa-plus fa-lg" aria-hidden="true"></i>
+            </a>
+          </div> -->
+          <div class="form-group col-md-6">
+            {{ form.nome_fantasia.label_tag }}
+            {% render_field form.nome_fantasia class+="form-control" placeholder+="Informe o nome" %}
+            {{ form.nome_fantasia.errors }}
+          </div>
+          <div class="form-group col-md-2">
+            {{ form.cnpj.label_tag }}
+            {% render_field form.cnpj class+="form-control" placeholder+="Informe o CNPJ" %}
+            {{ form.cnpj.errors }}
+          </div>
+          <div class="form-group col-md-2">
+            {{ form.inscricao_estadual.label_tag }}
+            {% render_field form.inscricao_estadual class+="form-control" placeholder+="Informe o número" %}
+            {{ form.inscricao_estadual.errors }}
+          </div>
+          <div class="form-group col-md-2">
+            {{ form.cep.label_tag }}
+            {% render_field form.cep class+="form-control" placeholder+="Informe o CEP" %}
+            {{ form.cep.errors }}
+          </div>
+          <div class="form-group col-md-2">
+            {{ form.endereco.label_tag }}
+            {% render_field form.endereco class+="form-control" placeholder+="Informe o endereco" %}
+            {{ form.endereco.errors }}
+          </div>
+          <div class="form-group col-md-2">
+            {{ form.numero.label_tag }}
+            {% render_field form.numero class+="form-control" placeholder+="Informe o numero/lote" %}
+            {{ form.numero.errors }}
+          </div>
+          <div class="form-group col-md-2">
+            {{ form.bairro.label_tag }}
+            {% render_field form.bairro class+="form-control" placeholder+="Informe o bairro" %}
+            {{ form.bairro.errors }}
+          </div>
+          <div class="form-group col-md-2">
+            {{ form.cidade.label_tag }}
+            {% render_field form.cidade class+="form-control" placeholder+="Informe a cidade" %}
+            {{ form.cidade.errors }}
+          </div>
+          <div class="form-group col-md-2">
+            {{ form.uf.label_tag }}
+            {% render_field form.uf class+="form-control" placeholder+="Informe o estado(UF)" %}
+            {{ form.uf.errors }}
+          </div>
+        </div>
+        <!-- <div class="form-row">
+          <div class="form-group col-md-6">
+            {{ form.ende.label_tag }}
+            {% render_field form.descricao class+="form-control" style+="resize: none" rows="5" placeholder+="Descreva o produto" %}
+            {{ form.descricao.errors }}
+          </div>
+          <div class="form-row col-md-6" style="margin-left: 5px;">
+            <div class="form-group col-md-6">
+              {{ form.preco_custo.label_tag }}
+              {% render_field form.preco_custo class+="form-control" placeholder+="Informe o custo" style+="margin-bottom: 26px" %}
+              {{ form.preco_custo.errors }}
+
+              {{ form.unidade_medida.label_tag }}
+              {% render_field form.unidade_medida class+="form-control" %}
+              {{ form.unidade_medida.errors }}
+            </div>
+            <div class="form-group col-md-6">
+              {{ form.preco_venda.label_tag }}
+              {% render_field form.preco_venda class+="form-control" placeholder+="Informe o custo" style+="margin-bottom: 26px" %}
+              {{ form.preco_venda.errors }}
+
+              {{ form.multiplo.label_tag }}
+              {% render_field form.multiplo class+="form-control" %}
+              {{ form.multiplo.errors }}
+            </div>
+          </div>
+        </div> -->
+        <button type="submit" class="btn btn-success">Salvar</button>
+        <a class="btn btn-secondary" href="{% url 'fornecedor:home' %}">Voltar</a>
+      </form>
+    </div>
+  </div>
+{% endblock %}

@@ -51,7 +51,7 @@ def excluir_produto(request, pk):
     if request.method == "POST":
         produto.delete()
         return redirect('produto:home')
-    template_name = 'produto/confirmar_delete.html'
+    template_name = 'confirmar_delete.html'
     context = {
         'objeto': produto,
         'title': 'Excluir produto',
@@ -115,7 +115,7 @@ def excluir_categoria(request, pk):
     if request.method == "POST":
         categoria.delete()
         return redirect('produto:lista_categorias')
-    template_name = 'produto/confirmar_delete.html'
+    template_name = 'confirmar_delete.html'
     context = {
         'objeto': categoria,
         'title': 'Excluir categoria',
