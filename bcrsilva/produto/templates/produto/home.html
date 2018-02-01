@@ -5,7 +5,7 @@
   <div class="card-header" style="height: 65px;">
     <div class="form-row" style="height: 40px;">
       <div class="form-group col-md-11" style="padding-top: 6px;">
-        <i class="fa fa-table fa-lg"></i> Produtos registrados
+        <i class="fa fa-table fa-lg"></i> <b>Produtos registrados</b>
       </div>
       <div class="form-group col-md-1" style="padding-left: 30px;">
         <a class="btn btn-success" href="{% url 'produto:novo_produto' %}" title="Novo produto">
@@ -19,21 +19,19 @@
         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
           <thead>
             <tr>
+              <th>Categoria</th>
               <th>Nome</th>
-              <th style="text-align: center; width: 13%;">Unidade de medida</th>
-              <th style="text-align: center; width: 6%;">Múltiplo</th>
               <th style="text-align: center; width: 12%;">Preço Anterior(R$)</th>
               <th style="text-align: center; width: 8%;">Preço (R$)</th>
               <th style="text-align: center; width: 8%;">Lucro (%)</th>
-              <th style="text-align: center; width: 8%;">Ações</th>
+              <th style="text-align: center; width: 13%;">Ações</th>
             </tr>
           </thead>
           <tbody>
             {% for produto in produtos %}
               <tr>
+                <td>{{ produto.categoria }}</td>
                 <td>{{ produto.nome }}</td>
-                <td style="text-align: center;">{{ produto.unidade_medida }}</td>
-                <td style="text-align: center;">{{ produto.multiplo }}</td>
                 <td style="text-align: center;">{{ produto.preco_anterior|default_if_none:"-" }}</td>
                 <td style="text-align: center;">{{ produto.preco_venda }}</td>
                 <td style="text-align: center;">{{ produto.lucro }}</td>

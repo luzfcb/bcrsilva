@@ -40,8 +40,7 @@ def editar_fornecedor(request, pk):
     template_name = 'fornecedor/editar_fornecedor.html'
     context = {
         'form': form,
-        'title': 'Editar fornecedor',
-        'fornecedor': fornecedor
+        'title': 'Editar fornecedor: "%s"' % (fornecedor)
     }
     return render(request, template_name, context)
 

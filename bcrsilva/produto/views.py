@@ -40,8 +40,7 @@ def editar_produto(request, pk):
     template_name = 'produto/editar_produto.html'
     context = {
         'form': form,
-        'title': 'Editar produto',
-        'produto': produto
+        'title': 'Editar produto: "%s"' % (produto)
     }
     return render(request, template_name, context)
 
@@ -104,8 +103,7 @@ def editar_categoria(request, pk):
     template_name = 'produto/editar_categoria.html'
     context = {
         'form': form,
-        'title': 'Editar categoria',
-        'categoria': categoria
+        'title': 'Editar categoria: "%s"' % (categoria)
     }
     return render(request, template_name, context)
 

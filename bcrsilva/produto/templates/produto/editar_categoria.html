@@ -4,7 +4,7 @@
 
 {% block content %}
   <div class="card card-register mx-auto" style="max-width: 50%;">
-    <div class="card-header">{{ title }}: {{ categoria }}</div>
+    <div class="card-header"><b>{{ title }}</b></div>
     <div class="card-body">
       <form method="POST">
         {% csrf_token %}
