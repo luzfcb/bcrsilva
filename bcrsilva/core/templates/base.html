@@ -37,7 +37,15 @@
           </a>
           <ul class="sidenav-second-level collapse" id="collapseMulti">
             <li>
-              <a href="#">Clientes</a>
+              <a class="nav-link-collapse collapsed" data-toggle="collapse" href="#collapseMulti2">Clientes</a>
+              <ul class="sidenav-third-level collapse" id="collapseMulti2">
+                <li>
+                  <a href="{% url 'cliente:listar_clientesPF' %}">Pessoa Física</a>
+                </li>
+                <li>
+                  <a href="{% url 'cliente:listar_clientesPJ' %}">Pessoa Jurídica</a>
+                </li>
+              </ul>
             </li>
             <li>
               <a href="{% url 'fornecedor:home' %}">Fornecedores</a>

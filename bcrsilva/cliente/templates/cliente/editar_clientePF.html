@@ -11,24 +11,29 @@
         {{ form.non_field_errors }}
         <div class="form-row">
           <div class="form-group col-md-4">
-            {{ form.razao_social.label_tag }}
-            {{ form.razao_social }}
-            {{ form.razao_social.errors }}
-          </div>
-          <div class="form-group col-md-4">
-            {{ form.nome_fantasia.label_tag }}
-            {{ form.nome_fantasia }}
-            {{ form.nome_fantasia.errors }}
+            {{ form.nome.label_tag }}
+            {{ form.nome }}
+            {{ form.nome.errors }}
           </div>
           <div class="form-group col-md-2">
-            {{ form.cnpj.label_tag }}
-            {{ form.cnpj }}
-            {{ form.cnpj.errors }}
+            {{ form.apelido.label_tag }}
+            {{ form.apelido }}
+            {{ form.apelido.errors }}
           </div>
           <div class="form-group col-md-2">
-            {{ form.inscricao_estadual.label_tag }}
-            {{ form.inscricao_estadual }}
-            {{ form.inscricao_estadual.errors }}
+            {{ form.cpf.label_tag }}
+            {{ form.cpf }}
+            {{ form.cpf.errors }}
+          </div>
+          <div class="form-group col-md-2">
+            {{ form.rg.label_tag }}
+            {{ form.rg }}
+            {{ form.rg.errors }}
+          </div>
+          <div class="form-group col-md-2">
+            {{ form.data_nascimento.label_tag }}
+            {{ form.data_nascimento }}
+            {{ form.data_nascimento.errors }}
           </div>
           <div class="form-group col-md-1">
             {{ form.cep.label_tag }}
@@ -92,7 +97,7 @@
             </div>
           </div>
         <button type="submit" class="btn btn-success">Salvar</button>
-        <a class="btn btn-secondary" href="{% url 'fornecedor:home' %}">Voltar</a>
+        <a class="btn btn-secondary" href="{% url 'cliente:listar_clientesPF' %}">Voltar</a>
       </form>
     </div>
   </div>

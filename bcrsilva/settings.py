@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'widget_tweaks',
     'bcrsilva.core',
+    'bcrsilva.cliente',
     'bcrsilva.produto',
     'bcrsilva.fornecedor',
 ]
