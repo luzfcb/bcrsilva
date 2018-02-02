@@ -36,7 +36,7 @@
                 <td>{{ fornecedor.cidade }}</td>
                 <td>
                   {% for contato in fornecedor.contatos.all %}
-                    {{ contato }}
+                    {{ contato }} <br>
                   {% endfor %}
                 </td>
                 <!-- <td style="text-align: center;">{{ produto.preco_anterior|default_if_none:"-" }}</td> -->

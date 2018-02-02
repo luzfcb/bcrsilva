@@ -1,7 +1,9 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from datetime import datetime
-from .forms import FornecedorForm
 from .models import Fornecedor
+from .forms import FornecedorForm
+from bcrsilva.core.models import Contato
+from bcrsilva.core.forms import ContatoInlineFormSet
 
 def home(request):
     atualizado_em = datetime.now()
@@ -14,32 +16,57 @@ def home(request):
     return render(request, template_name, context)
 
 def novo_fornecedor(request):
+    form = FornecedorForm()
+    contato_forms = ContatoInlineFormSet(
+        queryset=Contato.objects.none()
+    )
+
     if request.method == "POST":
         form = FornecedorForm(request.POST)
-        if form.is_valid():
-            form.save()
+        contato_forms = ContatoInlineFormSet(
+            request.POST,
+            queryset=Contato.objects.none()
+        )
+        if form.is_valid() and contato_forms.is_valid():
+            fornecedor = form.save(commit=False)
+            fornecedor.save()
+            contatos = contato_forms.save(commit=False)
+            for contato in contatos:
+                contato.pessoa = fornecedor
+                contato.save()
             return redirect('fornecedor:home')
-    else:
-        form = FornecedorForm()
     template_name = 'fornecedor/editar_fornecedor.html'
     context = {
         'form': form,
+        'formset': contato_forms,
         'title': 'Registrar fornecedor'
     }
     return render(request, template_name, context)
 
 def editar_fornecedor(request, pk):
     fornecedor = get_object_or_404(Fornecedor, pk=pk)
+    form = FornecedorForm(instance=fornecedor)
+    contato_forms = ContatoInlineFormSet(
+        queryset=form.instance.contatos.all()
+    )
+
     if request.method == "POST":
         form = FornecedorForm(request.POST, instance=fornecedor)
-        if form.is_valid():
+        contato_forms = ContatoInlineFormSet(
+            request.POST,
+            queryset=form.instance.contatos.all()
+        )
+        if form.is_valid() and contato_forms.is_valid():
             form.save()
+            contatos = contato_forms.save(commit=False)
+            for contato in contatos:
+                contato.pessoa = fornecedor
+                contato.save()
             return redirect('fornecedor:home')
-    else:
-        form = FornecedorForm(instance=fornecedor)
     template_name = 'fornecedor/editar_fornecedor.html'
     context = {
         'form': form,
+        'formset': contato_forms,
         'title': 'Editar fornecedor: "%s"' % (fornecedor)
     }
     return render(request, template_name, context)
