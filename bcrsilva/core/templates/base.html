@@ -37,13 +37,13 @@
           </a>
           <ul class="sidenav-second-level collapse" id="collapseMulti">
             <li>
-              <a class="nav-link-collapse collapsed" data-toggle="collapse" href="#collapseMulti2">Clientes</a>
-              <ul class="sidenav-third-level collapse" id="collapseMulti2">
+              <a class="nav-link-collapse collapsed" data-toggle="collapse" href="#collapseMultiClientes">Clientes</a>
+              <ul class="sidenav-third-level collapse" id="collapseMultiClientes">
                 <li>
-                  <a href="{% url 'cliente:listar_clientesPF' %}">Pessoa Física</a>
+                  <a href="{% url 'cliente:listar_clientesPF' %}">Pessoas Físicas</a>
                 </li>
                 <li>
-                  <a href="{% url 'cliente:listar_clientesPJ' %}">Pessoa Jurídica</a>
+                  <a href="{% url 'cliente:listar_clientesPJ' %}">Pessoas Jurídicas</a>
                 </li>
               </ul>
             </li>
@@ -51,8 +51,8 @@
               <a href="{% url 'fornecedor:home' %}">Fornecedores</a>
             </li>
             <li>
-              <a class="nav-link-collapse collapsed" data-toggle="collapse" href="#collapseMulti2">Produtos</a>
-              <ul class="sidenav-third-level collapse" id="collapseMulti2">
+              <a class="nav-link-collapse collapsed" data-toggle="collapse" href="#collapseMultiProduto">Produtos</a>
+              <ul class="sidenav-third-level collapse" id="collapseMultiProduto">
                 <li>
                   <a href="{% url 'produto:lista_categorias' %}">Categorias</a>
                 </li>
@@ -94,6 +94,14 @@
 
     <div class="content-wrapper">
       <div class="container-fluid">
+        {% if messages %}
+        <div class="alert alert-success alert-dismissable" id="success-alert">
+          <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+          {% for message in messages %}
+          <p>{{ message }}</p>
+          {% endfor %}
+        </div>
+        {% endif %}
         <!-- Breadcrumbs-->
           <ol class="breadcrumb">
             {% block breadcrumb %}
@@ -138,5 +146,10 @@
     <!-- Custom scripts for this page-->
     <script src="{% static 'js/sb-admin-datatables.min.js' %}"></script>
     <script src="{% static 'js/sb-admin-charts.min.js' %}"></script>
+    <script type="text/javascript">
+      $("#success-alert").fadeTo(1000, 500).slideUp(500, function(){
+        $("#success-alert").alert('close');
+      });
+    </script>
   </body>
   </html>

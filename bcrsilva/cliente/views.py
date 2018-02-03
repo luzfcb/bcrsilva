@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib import messages
 from datetime import datetime
 from .models import ClientePJ, ClientePF
 from .forms import ClientePJForm, ClientePFForm
@@ -34,6 +35,7 @@ def novo_clientePJ(request):
             for contato in contatos:
                 contato.pessoa = clientePJ
                 contato.save()
+            messages.success(request, 'Cliente(PJ) salvo com sucesso!')
             return redirect('cliente:listar_clientesPJ')
     template_name = 'cliente/editar_clientePJ.html'
     context = {
@@ -62,6 +64,7 @@ def editar_clientePJ(request, pk):
             for contato in contatos:
                 contato.pessoa = clientePJ
                 contato.save()
+            messages.success(request, 'Cliente(PJ) alterado com sucesso!')
             return redirect('cliente:listar_clientesPJ')
     template_name = 'cliente/editar_clientePJ.html'
     context = {
@@ -76,12 +79,14 @@ def excluir_clientePJ(request, pk):
 
     if request.method == "POST":
         clientePJ.delete()
+        messages.success(request, 'Cliente(PJ) excluído com sucesso!')
         return redirect('cliente:listar_clientesPJ')
     template_name = 'confirmar_delete.html'
     context = {
         'objeto': clientePJ,
         'title': 'Excluir cliente',
-        'mensagem': 'Tem certeza que quer deletar o Cliente (PJ): '
+        'mensagem': 'Tem certeza que quer deletar o Cliente (PJ): ',
+        'clientePJ': True
     }
     return render(request, template_name, context)
 
@@ -114,6 +119,7 @@ def novo_clientePF(request):
             for contato in contatos:
                 contato.pessoa = clientePF
                 contato.save()
+            messages.success(request, 'Cliente(PF) salvo com sucesso!')
             return redirect('cliente:listar_clientesPF')
     template_name = 'cliente/editar_clientePF.html'
     context = {
@@ -142,6 +148,7 @@ def editar_clientePF(request, pk):
             for contato in contatos:
                 contato.pessoa = clientePF
                 contato.save()
+            messages.success(request, 'Cliente(PF) alterado com sucesso!')
             return redirect('cliente:listar_clientesPF')
     template_name = 'cliente/editar_clientePF.html'
     context = {
@@ -156,11 +163,13 @@ def excluir_clientePF(request, pk):
 
     if request.method == "POST":
         clientePF.delete()
+        messages.success(request, 'Cliente(PF) excluído com sucesso!')
         return redirect('cliente:listar_clientesPF')
     template_name = 'confirmar_delete.html'
     context = {
         'objeto': clientePF,
         'title': 'Excluir cliente',
-        'mensagem': 'Tem certeza que quer deletar o Cliente (PF): '
+        'mensagem': 'Tem certeza que quer deletar o Cliente (PF): ',
+        'clientePF': True
     }
     return render(request, template_name, context)

@@ -11,7 +11,17 @@
         </p>
         <div style="padding-left: 23%;">
           <button class="btn btn-danger" type="submit"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> Tenho certeza!</button>
-          <a class="btn btn-secondary" href="{% url 'produto:lista_categorias' %}">Voltar</a>
+          {% if categoria %}
+            <a class="btn btn-secondary" href="{% url 'produto:lista_categorias' %}">Voltar</a>
+          {% elif produto %}
+            <a class="btn btn-secondary" href="{% url 'produto:home' %}">Voltar</a>
+          {% elif fornecedor %}
+            <a class="btn btn-secondary" href="{% url 'fornecedor:home' %}">Voltar</a>
+          {% elif clientePJ %}
+            <a class="btn btn-secondary" href="{% url 'cliente:listar_clientesPJ' %}">Voltar</a>
+          {% elif clientePF %}
+            <a class="btn btn-secondary" href="{% url 'cliente:listar_clientesPF' %}">Voltar</a>
+          {% endif %}
         </div>
       </form>
     </div>

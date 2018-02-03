@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib import messages
 from datetime import datetime
 from .models import Fornecedor
 from .forms import FornecedorForm
@@ -34,6 +35,7 @@ def novo_fornecedor(request):
             for contato in contatos:
                 contato.pessoa = fornecedor
                 contato.save()
+            messages.success(request, 'Fornecedor salvo com sucesso!')
             return redirect('fornecedor:home')
     template_name = 'fornecedor/editar_fornecedor.html'
     context = {
@@ -62,6 +64,7 @@ def editar_fornecedor(request, pk):
             for contato in contatos:
                 contato.pessoa = fornecedor
                 contato.save()
+            messages.success(request, 'Fornecedor alterado com sucesso!')
             return redirect('fornecedor:home')
     template_name = 'fornecedor/editar_fornecedor.html'
     context = {
@@ -76,11 +79,13 @@ def excluir_fornecedor(request, pk):
 
     if request.method == "POST":
         fornecedor.delete()
+        messages.success(request, 'Fornecedor excluído com sucesso!')
         return redirect('fornecedor:home')
     template_name = 'confirmar_delete.html'
     context = {
         'objeto': fornecedor,
         'title': 'Excluir fornecedor',
-        'mensagem': 'Tem certeza que quer deletar o Fornecedor: '
+        'mensagem': 'Tem certeza que quer deletar o Fornecedor: ',
+        'fornecedor': True
     }
     return render(request, template_name, context)

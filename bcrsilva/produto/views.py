@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib import messages
 from datetime import datetime
 from .models import Categoria, Produto
 from .forms import CategoriaForm, ProdutoForm
@@ -18,6 +19,7 @@ def novo_produto(request):
         form = ProdutoForm(request.POST)
         if form.is_valid():
             form.save()
+            messages.success(request, 'Produto salvo com sucesso!')
             return redirect('produto:home')
     else:
         form = ProdutoForm()
@@ -34,6 +36,7 @@ def editar_produto(request, pk):
         form = ProdutoForm(request.POST, instance=produto)
         if form.is_valid():
             form.save()
+            messages.success(request, 'Produto alterado com sucesso!')
             return redirect('produto:home')
     else:
         form = ProdutoForm(instance=produto)
@@ -49,12 +52,14 @@ def excluir_produto(request, pk):
 
     if request.method == "POST":
         produto.delete()
+        messages.success(request, 'Produto excluído com sucesso!')
         return redirect('produto:home')
     template_name = 'confirmar_delete.html'
     context = {
         'objeto': produto,
         'title': 'Excluir produto',
-        'mensagem': 'Tem certeza que quer deletar o Produto: '
+        'mensagem': 'Tem certeza que quer deletar o Produto: ',
+        'produto': True
     }
     return render(request, template_name, context)
 
@@ -81,6 +86,7 @@ def nova_categoria(request):
         form = CategoriaForm(request.POST)
         if form.is_valid():
             form.save()
+            messages.success(request, 'Categoria salva com sucesso!')
             return redirect('produto:lista_categorias')
     else:
         form = CategoriaForm()
@@ -97,6 +103,7 @@ def editar_categoria(request, pk):
         form = CategoriaForm(request.POST, instance=categoria)
         if form.is_valid():
             form.save()
+            messages.success(request, 'Categoria alterada com sucesso!')
             return redirect('produto:lista_categorias')
     else:
         form = CategoriaForm(instance=categoria)
@@ -112,11 +119,13 @@ def excluir_categoria(request, pk):
 
     if request.method == "POST":
         categoria.delete()
+        messages.success(request, 'Categoria excluída com sucesso!')
         return redirect('produto:lista_categorias')
     template_name = 'confirmar_delete.html'
     context = {
         'objeto': categoria,
         'title': 'Excluir categoria',
-        'mensagem': 'Tem certeza que quer deletar a Categoria: '
+        'mensagem': 'Tem certeza que quer deletar a Categoria: ',
+        'categoria': True
     }
     return render(request, template_name, context)
