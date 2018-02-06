@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'bcrsilva.cliente',
     'bcrsilva.produto',
     'bcrsilva.fornecedor',
+    'bcrsilva.estoque',
 ]
 
 MIDDLEWARE = [
