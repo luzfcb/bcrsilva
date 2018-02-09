@@ -19,8 +19,10 @@ mkvirtualenv -p python3 -a `pwd` bcrsilva
 
 pip install -r requirements.txt
 
+```
+
+```bash
 Ao editar o código deste projeto, lembre-se de primeiramente instalar o plugin do editorconfig para o editor que você está utilizando, de modo que seu editor seja configurado automaticamente para seguir os padrões que usamos neste projeto.
 
 Você pode obter a lista de IDE's/Editores suportados neste link: http://editorconfig.org/#download
-
 ```
