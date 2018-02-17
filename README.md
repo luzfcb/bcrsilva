@@ -17,7 +17,7 @@ cd bcrsilva
 
 mkvirtualenv -p python3 -a `pwd` bcrsilva
 
-pip install -r requirements.txt
+pip install -r requirements_dev.txt
 
 ```
 
