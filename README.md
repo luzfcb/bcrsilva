@@ -17,7 +17,7 @@ cd bcrsilva
 
 mkvirtualenv -p python3 -a `pwd` bcrsilva
 
-pip install -r requirements.txt
+pip install -r requirements_dev.txt
 
 ```
 
@@ -26,3 +26,19 @@ Ao editar o código deste projeto, lembre-se de primeiramente instalar o plugin 
 
 Você pode obter a lista de IDE's/Editores suportados neste link: http://editorconfig.org/#download
 ```
+
+
+
+# Testes de qualidade
+
+```bash
+flake8
+```
+
+
+# Correção automatica dos erros PEP8
+
+```bash
+autopep8 -i -r bcrsilva/
+```
+
