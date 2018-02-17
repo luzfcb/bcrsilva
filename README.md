@@ -1,6 +1,6 @@
 # Projeto bcrsilva
 
-
+[![Build Status](https://travis-ci.org/Alquimar/bcrsilva.svg?branch=master)](https://travis-ci.org/Alquimar/bcrsilva)
 
 Requisitos:
 
