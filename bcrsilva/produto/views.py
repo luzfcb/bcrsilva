@@ -4,6 +4,7 @@ from datetime import datetime
 from .models import Categoria, Produto
 from .forms import CategoriaForm, ProdutoForm
 
+
 def home(request):
     atualizado_em = datetime.now()
     produtos = Produto.objects.all()
@@ -13,6 +14,7 @@ def home(request):
         'atualizado_em': atualizado_em
     }
     return render(request, template_name, context)
+
 
 def novo_produto(request):
     if request.method == "POST":
@@ -29,6 +31,7 @@ def novo_produto(request):
         'title': 'Registrar produto'
     }
     return render(request, template_name, context)
+
 
 def editar_produto(request, pk):
     produto = get_object_or_404(Produto, pk=pk)
@@ -47,6 +50,7 @@ def editar_produto(request, pk):
     }
     return render(request, template_name, context)
 
+
 def excluir_produto(request, pk):
     produto = get_object_or_404(Produto, pk=pk)
 
@@ -63,6 +67,7 @@ def excluir_produto(request, pk):
     }
     return render(request, template_name, context)
 
+
 def lista_categorias(request):
     atualizado_em = datetime.now()
     categorias = Categoria.objects.all()
@@ -73,6 +78,7 @@ def lista_categorias(request):
     }
     return render(request, template_name, context)
 
+
 def detalhes_categoria(request, pk):
     categoria = get_object_or_404(Categoria, pk=pk)
     template_name = 'produto/detalhes_categoria.html'
@@ -80,6 +86,7 @@ def detalhes_categoria(request, pk):
         'categoria': categoria
     }
     return render(request, template_name, context)
+
 
 def nova_categoria(request):
     if request.method == "POST":
@@ -97,6 +104,7 @@ def nova_categoria(request):
     }
     return render(request, template_name, context)
 
+
 def editar_categoria(request, pk):
     categoria = get_object_or_404(Categoria, pk=pk)
     if request.method == "POST":
@@ -113,6 +121,7 @@ def editar_categoria(request, pk):
         'title': 'Editar categoria: "%s"' % (categoria)
     }
     return render(request, template_name, context)
+
 
 def excluir_categoria(request, pk):
     categoria = get_object_or_404(Categoria, pk=pk)

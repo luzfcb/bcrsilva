@@ -14,7 +14,8 @@ class Migration(migrations.Migration):
     operations = [
         migrations.AlterModelOptions(
             name='itemnota',
-            options={'ordering': ['produto', 'quantidade'], 'verbose_name': 'Item nota', 'verbose_name_plural': 'Itens nota'},
+            options={'ordering': ['produto', 'quantidade'],
+                     'verbose_name': 'Item nota', 'verbose_name_plural': 'Itens nota'},
         ),
         migrations.RemoveField(
             model_name='itemnota',

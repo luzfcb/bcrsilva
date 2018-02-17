@@ -15,6 +15,7 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='nota',
             name='total',
-            field=models.DecimalField(decimal_places=2, editable=False, max_digits=7, null=True, verbose_name='Total'),
+            field=models.DecimalField(
+                decimal_places=2, editable=False, max_digits=7, null=True, verbose_name='Total'),
         ),
     ]

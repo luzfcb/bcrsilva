@@ -16,12 +16,14 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='itemnota',
             name='id',
-            field=models.AutoField(auto_created=True, default=0, primary_key=True, serialize=False, verbose_name='ID'),
+            field=models.AutoField(
+                auto_created=True, default=0, primary_key=True, serialize=False, verbose_name='ID'),
             preserve_default=False,
         ),
         migrations.AlterField(
             model_name='itemnota',
             name='nota',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='itensNota', to='estoque.Nota', verbose_name='Nota'),
+            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE,
+                                    related_name='itensNota', to='estoque.Nota', verbose_name='Nota'),
         ),
     ]

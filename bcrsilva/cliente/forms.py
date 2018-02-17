@@ -1,6 +1,7 @@
 from django import forms
 from .models import ClientePJ, ClientePF
 
+
 class ClientePJForm(forms.ModelForm):
     class Meta:
         model = ClientePJ
@@ -73,6 +74,7 @@ class ClientePJForm(forms.ModelForm):
                 }
             )
         }
+
 
 class ClientePFForm(forms.ModelForm):
     class Meta:

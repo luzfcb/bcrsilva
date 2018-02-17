@@ -1,6 +1,7 @@
 from django.db import models
 from bcrsilva.core.models import PessoaJuridica
 
+
 class Fornecedor(PessoaJuridica):
     def __str__(self):
         return '%s - %s' % (self.razao_social, self.nome_fantasia)

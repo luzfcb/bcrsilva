@@ -6,6 +6,7 @@ from .forms import ClientePJForm, ClientePFForm
 from bcrsilva.core.models import Contato
 from bcrsilva.core.forms import ContatoInlineFormSet
 
+
 def listar_clientesPJ(request):
     atualizado_em = datetime.now()
     clientes = ClientePJ.objects.all()
@@ -15,6 +16,7 @@ def listar_clientesPJ(request):
         'atualizado_em': atualizado_em
     }
     return render(request, template_name, context)
+
 
 def novo_clientePJ(request):
     form = ClientePJForm()
@@ -45,6 +47,7 @@ def novo_clientePJ(request):
     }
     return render(request, template_name, context)
 
+
 def editar_clientePJ(request, pk):
     clientePJ = get_object_or_404(ClientePJ, pk=pk)
     form = ClientePJForm(instance=clientePJ)
@@ -74,6 +77,7 @@ def editar_clientePJ(request, pk):
     }
     return render(request, template_name, context)
 
+
 def excluir_clientePJ(request, pk):
     clientePJ = get_object_or_404(ClientePJ, pk=pk)
 
@@ -90,6 +94,7 @@ def excluir_clientePJ(request, pk):
     }
     return render(request, template_name, context)
 
+
 def listar_clientesPF(request):
     atualizado_em = datetime.now()
     clientes = ClientePF.objects.all()
@@ -99,6 +104,7 @@ def listar_clientesPF(request):
         'atualizado_em': atualizado_em
     }
     return render(request, template_name, context)
+
 
 def novo_clientePF(request):
     form = ClientePFForm()
@@ -129,6 +135,7 @@ def novo_clientePF(request):
     }
     return render(request, template_name, context)
 
+
 def editar_clientePF(request, pk):
     clientePF = get_object_or_404(ClientePF, pk=pk)
     form = ClientePFForm(instance=clientePF)
@@ -157,6 +164,7 @@ def editar_clientePF(request, pk):
         'title': 'Editar cliente (PF): "%s"' % (clientePF)
     }
     return render(request, template_name, context)
+
 
 def excluir_clientePF(request, pk):
     clientePF = get_object_or_404(ClientePF, pk=pk)

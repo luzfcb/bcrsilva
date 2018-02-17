@@ -1,6 +1,7 @@
 from django import forms
 from .models import Categoria, Produto
 
+
 class CategoriaForm(forms.ModelForm):
     class Meta:
         model = Categoria
@@ -26,6 +27,8 @@ class CategoriaForm(forms.ModelForm):
         # labels = {
         #     'nome': 'Nome'
         # }
+
+
 class ProdutoForm(forms.ModelForm):
     class Meta:
         model = Produto

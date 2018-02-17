@@ -1,6 +1,7 @@
 from django.db import models
 from model_utils import FieldTracker
 
+
 class Categoria(models.Model):
     nome = models.CharField('Nome', max_length=100)
     descricao = models.TextField('Descrição', blank=True)
@@ -15,12 +16,13 @@ class Categoria(models.Model):
         verbose_name_plural = 'Categorias'
         ordering = ['nome']
 
+
 class Produto(models.Model):
     nome = models.CharField('Nome', max_length=100)
     descricao = models.TextField('Descrição', blank=True)
     preco_anterior = models.DecimalField(
         'Preço anterior', max_digits=7, decimal_places=2,
-        blank=True, null=True, editable = False
+        blank=True, null=True, editable=False
     )
 
     preco_custo = models.DecimalField(
@@ -50,16 +52,16 @@ class Produto(models.Model):
     )
     unidade_medida = models.CharField(
         'Unidade de medida',
-        max_length = 2,
-        choices = unidade_medida_choices
+        max_length=2,
+        choices=unidade_medida_choices
     )
 
     multiplo = models.DecimalField('Múltiplo', max_digits=7, decimal_places=2)
     ncm = models.CharField('NCM', max_length=20)
     categoria = models.ForeignKey(Categoria, verbose_name='Categoria',
-        related_name='produtos',
-        on_delete=models.CASCADE
-    )
+                                  related_name='produtos',
+                                  on_delete=models.CASCADE
+                                  )
     criado_em = models.DateTimeField('Criado em', auto_now_add=True)
     atualizado_em = models.DateTimeField('Atualizado em', auto_now=True)
 

@@ -3,10 +3,12 @@ from .models import Contato
 from bcrsilva.core.models import Pessoa
 from django.forms.models import inlineformset_factory
 
+
 class ContatoForm(forms.ModelForm):
     class Meta:
         model = Contato
         fields = '__all__'
+
 
 ContatoFormSet = forms.modelformset_factory(
     Contato,
@@ -23,7 +25,7 @@ ContatoInlineFormSet = forms.inlineformset_factory(
     min_num=0,
     max_num=4,
     can_delete=True,
-    widgets = {
+    widgets={
         'email': forms.TextInput(
             attrs={
                 'class': 'form-control',

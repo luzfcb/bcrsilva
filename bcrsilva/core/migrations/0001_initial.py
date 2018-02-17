@@ -17,11 +17,16 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Contato',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('email', models.EmailField(max_length=254, unique=True, verbose_name='E-mail')),
-                ('telefone', models.CharField(max_length=11, verbose_name='Telefone')),
-                ('criado_em', models.DateTimeField(auto_now_add=True, verbose_name='Criado em')),
-                ('atualizado_em', models.DateTimeField(auto_now=True, verbose_name='Atualizado em')),
+                ('id', models.AutoField(auto_created=True,
+                                        primary_key=True, serialize=False, verbose_name='ID')),
+                ('email', models.EmailField(max_length=254,
+                                            unique=True, verbose_name='E-mail')),
+                ('telefone', models.CharField(
+                    max_length=11, verbose_name='Telefone')),
+                ('criado_em', models.DateTimeField(
+                    auto_now_add=True, verbose_name='Criado em')),
+                ('atualizado_em', models.DateTimeField(
+                    auto_now=True, verbose_name='Atualizado em')),
             ],
             options={
                 'verbose_name': 'Contato',
@@ -32,43 +37,54 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Pessoa',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.AutoField(auto_created=True,
+                                        primary_key=True, serialize=False, verbose_name='ID')),
                 ('cep', models.CharField(max_length=8, verbose_name='CEP')),
                 ('endereco', models.TextField(verbose_name='Endereço')),
                 ('numero', models.IntegerField(verbose_name='Número/Lote')),
                 ('bairro', models.CharField(max_length=100, verbose_name='Bairro')),
                 ('cidade', models.CharField(max_length=100, verbose_name='Cidade')),
                 ('uf', models.CharField(max_length=2, verbose_name='UF')),
-                ('criado_em', models.DateTimeField(auto_now_add=True, verbose_name='Criado em')),
-                ('atualizado_em', models.DateTimeField(auto_now=True, verbose_name='Atualizado em')),
+                ('criado_em', models.DateTimeField(
+                    auto_now_add=True, verbose_name='Criado em')),
+                ('atualizado_em', models.DateTimeField(
+                    auto_now=True, verbose_name='Atualizado em')),
             ],
         ),
         migrations.CreateModel(
             name='PessoaFisica',
             fields=[
-                ('pessoa_ptr', models.OneToOneField(auto_created=True, on_delete=django.db.models.deletion.CASCADE, parent_link=True, primary_key=True, serialize=False, to='core.Pessoa')),
+                ('pessoa_ptr', models.OneToOneField(auto_created=True, on_delete=django.db.models.deletion.CASCADE,
+                                                    parent_link=True, primary_key=True, serialize=False, to='core.Pessoa')),
                 ('nome', models.CharField(max_length=100, verbose_name='Nome')),
-                ('apelido', models.CharField(blank=True, max_length=30, null=True, verbose_name='Apelido')),
+                ('apelido', models.CharField(blank=True,
+                                             max_length=30, null=True, verbose_name='Apelido')),
                 ('rg', models.CharField(max_length=20, verbose_name='RG')),
                 ('cpf', models.CharField(max_length=11, verbose_name='CPF')),
-                ('data_nascimento', models.DateField(verbose_name='Data de nascimento')),
+                ('data_nascimento', models.DateField(
+                    verbose_name='Data de nascimento')),
             ],
             bases=('core.pessoa',),
         ),
         migrations.CreateModel(
             name='PessoaJuridica',
             fields=[
-                ('pessoa_ptr', models.OneToOneField(auto_created=True, on_delete=django.db.models.deletion.CASCADE, parent_link=True, primary_key=True, serialize=False, to='core.Pessoa')),
-                ('razao_social', models.CharField(max_length=100, verbose_name='Razão Social')),
-                ('nome_fantasia', models.CharField(blank=True, max_length=30, null=True, verbose_name='Nome Fantasia')),
+                ('pessoa_ptr', models.OneToOneField(auto_created=True, on_delete=django.db.models.deletion.CASCADE,
+                                                    parent_link=True, primary_key=True, serialize=False, to='core.Pessoa')),
+                ('razao_social', models.CharField(
+                    max_length=100, verbose_name='Razão Social')),
+                ('nome_fantasia', models.CharField(blank=True,
+                                                   max_length=30, null=True, verbose_name='Nome Fantasia')),
                 ('cnpj', models.CharField(max_length=14, verbose_name='CNPJ')),
-                ('inscricao_estadual', models.CharField(max_length=20, verbose_name='Inscrição Estadual')),
+                ('inscricao_estadual', models.CharField(
+                    max_length=20, verbose_name='Inscrição Estadual')),
             ],
             bases=('core.pessoa',),
         ),
         migrations.AddField(
             model_name='contato',
             name='pessoa',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='contatos', to='core.Pessoa', verbose_name='Pessoa'),
+            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE,
+                                    related_name='contatos', to='core.Pessoa', verbose_name='Pessoa'),
         ),
     ]

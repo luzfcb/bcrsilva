@@ -6,6 +6,7 @@ from .forms import FornecedorForm
 from bcrsilva.core.models import Contato
 from bcrsilva.core.forms import ContatoInlineFormSet
 
+
 def home(request):
     atualizado_em = datetime.now()
     fornecedores = Fornecedor.objects.all()
@@ -15,6 +16,7 @@ def home(request):
         'atualizado_em': atualizado_em
     }
     return render(request, template_name, context)
+
 
 def novo_fornecedor(request):
     form = FornecedorForm()
@@ -45,6 +47,7 @@ def novo_fornecedor(request):
     }
     return render(request, template_name, context)
 
+
 def editar_fornecedor(request, pk):
     fornecedor = get_object_or_404(Fornecedor, pk=pk)
     form = FornecedorForm(instance=fornecedor)
@@ -73,6 +76,7 @@ def editar_fornecedor(request, pk):
         'title': 'Editar fornecedor: "%s"' % (fornecedor)
     }
     return render(request, template_name, context)
+
 
 def excluir_fornecedor(request, pk):
     fornecedor = get_object_or_404(Fornecedor, pk=pk)

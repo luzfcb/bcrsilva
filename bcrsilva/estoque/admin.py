@@ -10,8 +10,10 @@ from .models import ItemNota, NotaEntrada
 #
 # admin.site.register(ItemNota, ItemNotaAdmin)
 
+
 class ItemNotaInlineAdmin(admin.StackedInline):
     model = ItemNota
+
 
 class NotaEntradaAdmin(admin.ModelAdmin):
     list_display = [
@@ -32,5 +34,6 @@ class NotaEntradaAdmin(admin.ModelAdmin):
     #     for item in obj.itensNota.all():
     #         total += item.produto.preco_custo * item.quantidade
     #     return total
+
 
 admin.site.register(NotaEntrada, NotaEntradaAdmin)

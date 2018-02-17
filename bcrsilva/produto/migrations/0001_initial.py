@@ -17,11 +17,14 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Categoria',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.AutoField(auto_created=True,
+                                        primary_key=True, serialize=False, verbose_name='ID')),
                 ('nome', models.CharField(max_length=100, verbose_name='Nome')),
                 ('descricao', models.TextField(blank=True, verbose_name='Descrição')),
-                ('criado_em', models.DateTimeField(auto_now_add=True, verbose_name='Criado em')),
-                ('atualizado_em', models.DateTimeField(auto_now=True, verbose_name='Atualizado em')),
+                ('criado_em', models.DateTimeField(
+                    auto_now_add=True, verbose_name='Criado em')),
+                ('atualizado_em', models.DateTimeField(
+                    auto_now=True, verbose_name='Atualizado em')),
             ],
             options={
                 'verbose_name': 'Categoria',
@@ -32,19 +35,29 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Produto',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.AutoField(auto_created=True,
+                                        primary_key=True, serialize=False, verbose_name='ID')),
                 ('nome', models.CharField(max_length=100, verbose_name='Nome')),
                 ('descricao', models.TextField(blank=True, verbose_name='Descrição')),
-                ('preco_anterior', models.DecimalField(blank=True, decimal_places=2, editable=False, max_digits=7, null=True, verbose_name='Preço anterior')),
-                ('preco_custo', models.DecimalField(decimal_places=2, max_digits=7, verbose_name='Preço de custo')),
-                ('preco_venda', models.DecimalField(decimal_places=2, max_digits=7, verbose_name='Preço de venda')),
-                ('lucro', models.DecimalField(decimal_places=2, editable=False, max_digits=5, verbose_name='Lucro %')),
-                ('unidade_medida', models.CharField(choices=[('ml', 'mililitro'), ('l', 'litro'), ('mm', 'milímetro'), ('cm', 'centímetro'), ('m', 'metro'), ('mg', 'miligrama'), ('g', 'grama'), ('kg', 'quilograma'), ('un', 'unidade'), ('cx', 'caixa'), ('pc', 'pacote'), ('sc', 'saco'), ('p', 'par')], max_length=2, verbose_name='Unidade de medida')),
-                ('multiplo', models.DecimalField(decimal_places=2, max_digits=7, verbose_name='Múltiplo')),
+                ('preco_anterior', models.DecimalField(blank=True, decimal_places=2,
+                                                       editable=False, max_digits=7, null=True, verbose_name='Preço anterior')),
+                ('preco_custo', models.DecimalField(decimal_places=2,
+                                                    max_digits=7, verbose_name='Preço de custo')),
+                ('preco_venda', models.DecimalField(decimal_places=2,
+                                                    max_digits=7, verbose_name='Preço de venda')),
+                ('lucro', models.DecimalField(decimal_places=2,
+                                              editable=False, max_digits=5, verbose_name='Lucro %')),
+                ('unidade_medida', models.CharField(choices=[('ml', 'mililitro'), ('l', 'litro'), ('mm', 'milímetro'), ('cm', 'centímetro'), ('m', 'metro'), ('mg', 'miligrama'), (
+                    'g', 'grama'), ('kg', 'quilograma'), ('un', 'unidade'), ('cx', 'caixa'), ('pc', 'pacote'), ('sc', 'saco'), ('p', 'par')], max_length=2, verbose_name='Unidade de medida')),
+                ('multiplo', models.DecimalField(
+                    decimal_places=2, max_digits=7, verbose_name='Múltiplo')),
                 ('ncm', models.CharField(max_length=20, verbose_name='NCM')),
-                ('criado_em', models.DateTimeField(auto_now_add=True, verbose_name='Criado em')),
-                ('atualizado_em', models.DateTimeField(auto_now=True, verbose_name='Atualizado em')),
-                ('categoria', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='produtos', to='produto.Categoria', verbose_name='Categoria')),
+                ('criado_em', models.DateTimeField(
+                    auto_now_add=True, verbose_name='Criado em')),
+                ('atualizado_em', models.DateTimeField(
+                    auto_now=True, verbose_name='Atualizado em')),
+                ('categoria', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE,
+                                                related_name='produtos', to='produto.Categoria', verbose_name='Categoria')),
             ],
             options={
                 'verbose_name': 'Produto',
