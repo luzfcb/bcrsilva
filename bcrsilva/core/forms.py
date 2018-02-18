@@ -1,7 +1,6 @@
 from django import forms
 from .models import Contato
 from bcrsilva.core.models import Pessoa
-from django.forms.models import inlineformset_factory
 
 
 class ContatoForm(forms.ModelForm):

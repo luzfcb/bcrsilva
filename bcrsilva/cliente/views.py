@@ -7,7 +7,7 @@ from bcrsilva.core.models import Contato
 from bcrsilva.core.forms import ContatoInlineFormSet
 
 
-def listar_clientesPJ(request):
+def listar_clientes_pj(request):
     atualizado_em = datetime.now()
     clientes = ClientePJ.objects.all()
     template_name = 'cliente/listar_clientesPJ.html'
@@ -18,7 +18,7 @@ def listar_clientesPJ(request):
     return render(request, template_name, context)
 
 
-def novo_clientePJ(request):
+def novo_cliente_pj(request):
     form = ClientePJForm()
     contato_forms = ContatoInlineFormSet(
         queryset=Contato.objects.none()
@@ -31,11 +31,11 @@ def novo_clientePJ(request):
             queryset=Contato.objects.none()
         )
         if form.is_valid() and contato_forms.is_valid():
-            clientePJ = form.save(commit=False)
-            clientePJ.save()
+            cliente_pj_obj = form.save(commit=False)
+            cliente_pj_obj.save()
             contatos = contato_forms.save(commit=False)
             for contato in contatos:
-                contato.pessoa = clientePJ
+                contato.pessoa = cliente_pj_obj
                 contato.save()
             messages.success(request, 'Cliente(PJ) salvo com sucesso!')
             return redirect('cliente:listar_clientesPJ')
@@ -48,15 +48,15 @@ def novo_clientePJ(request):
     return render(request, template_name, context)
 
 
-def editar_clientePJ(request, pk):
-    clientePJ = get_object_or_404(ClientePJ, pk=pk)
-    form = ClientePJForm(instance=clientePJ)
+def editar_cliente_pj(request, pk):
+    cliente_pj_obj = get_object_or_404(ClientePJ, pk=pk)
+    form = ClientePJForm(instance=cliente_pj_obj)
     contato_forms = ContatoInlineFormSet(
         queryset=form.instance.contatos.all()
     )
 
     if request.method == "POST":
-        form = ClientePJForm(request.POST, instance=clientePJ)
+        form = ClientePJForm(request.POST, instance=cliente_pj_obj)
         contato_forms = ContatoInlineFormSet(
             request.POST,
             queryset=form.instance.contatos.all()
@@ -65,7 +65,7 @@ def editar_clientePJ(request, pk):
             form.save()
             contatos = contato_forms.save(commit=False)
             for contato in contatos:
-                contato.pessoa = clientePJ
+                contato.pessoa = cliente_pj_obj
                 contato.save()
             messages.success(request, 'Cliente(PJ) alterado com sucesso!')
             return redirect('cliente:listar_clientesPJ')
@@ -73,21 +73,21 @@ def editar_clientePJ(request, pk):
     context = {
         'form': form,
         'formset': contato_forms,
-        'title': 'Editar cliente (PJ): "%s"' % (clientePJ)
+        'title': 'Editar cliente (PJ): "%s"' % (cliente_pj_obj)
     }
     return render(request, template_name, context)
 
 
-def excluir_clientePJ(request, pk):
-    clientePJ = get_object_or_404(ClientePJ, pk=pk)
+def excluir_cliente_pj(request, pk):
+    cliente_pj_obj = get_object_or_404(ClientePJ, pk=pk)
 
     if request.method == "POST":
-        clientePJ.delete()
+        cliente_pj_obj.delete()
         messages.success(request, 'Cliente(PJ) excluído com sucesso!')
         return redirect('cliente:listar_clientesPJ')
     template_name = 'confirmar_delete.html'
     context = {
-        'objeto': clientePJ,
+        'objeto': cliente_pj_obj,
         'title': 'Excluir cliente',
         'mensagem': 'Tem certeza que quer deletar o Cliente (PJ): ',
         'clientePJ': True
@@ -95,7 +95,7 @@ def excluir_clientePJ(request, pk):
     return render(request, template_name, context)
 
 
-def listar_clientesPF(request):
+def listar_clientes_pf(request):
     atualizado_em = datetime.now()
     clientes = ClientePF.objects.all()
     template_name = 'cliente/listar_clientesPF.html'
@@ -106,7 +106,7 @@ def listar_clientesPF(request):
     return render(request, template_name, context)
 
 
-def novo_clientePF(request):
+def novo_cliente_pf(request):
     form = ClientePFForm()
     contato_forms = ContatoInlineFormSet(
         queryset=Contato.objects.none()
@@ -119,11 +119,11 @@ def novo_clientePF(request):
             queryset=Contato.objects.none()
         )
         if form.is_valid() and contato_forms.is_valid():
-            clientePF = form.save(commit=False)
-            clientePF.save()
+            cliente_pf_obj = form.save(commit=False)
+            cliente_pf_obj.save()
             contatos = contato_forms.save(commit=False)
             for contato in contatos:
-                contato.pessoa = clientePF
+                contato.pessoa = cliente_pf_obj
                 contato.save()
             messages.success(request, 'Cliente(PF) salvo com sucesso!')
             return redirect('cliente:listar_clientesPF')
@@ -136,15 +136,15 @@ def novo_clientePF(request):
     return render(request, template_name, context)
 
 
-def editar_clientePF(request, pk):
-    clientePF = get_object_or_404(ClientePF, pk=pk)
-    form = ClientePFForm(instance=clientePF)
+def editar_cliente_pf(request, pk):
+    cliente_pf_obj = get_object_or_404(ClientePF, pk=pk)
+    form = ClientePFForm(instance=cliente_pf_obj)
     contato_forms = ContatoInlineFormSet(
         queryset=form.instance.contatos.all()
     )
 
     if request.method == "POST":
-        form = ClientePFForm(request.POST, instance=clientePF)
+        form = ClientePFForm(request.POST, instance=cliente_pf_obj)
         contato_forms = ContatoInlineFormSet(
             request.POST,
             queryset=form.instance.contatos.all()
@@ -153,7 +153,7 @@ def editar_clientePF(request, pk):
             form.save()
             contatos = contato_forms.save(commit=False)
             for contato in contatos:
-                contato.pessoa = clientePF
+                contato.pessoa = cliente_pf_obj
                 contato.save()
             messages.success(request, 'Cliente(PF) alterado com sucesso!')
             return redirect('cliente:listar_clientesPF')
@@ -161,21 +161,21 @@ def editar_clientePF(request, pk):
     context = {
         'form': form,
         'formset': contato_forms,
-        'title': 'Editar cliente (PF): "%s"' % (clientePF)
+        'title': 'Editar cliente (PF): "%s"' % (cliente_pf_obj)
     }
     return render(request, template_name, context)
 
 
-def excluir_clientePF(request, pk):
-    clientePF = get_object_or_404(ClientePF, pk=pk)
+def excluir_cliente_pf(request, pk):
+    cliente_pf_obj = get_object_or_404(ClientePF, pk=pk)
 
     if request.method == "POST":
-        clientePF.delete()
+        cliente_pf_obj.delete()
         messages.success(request, 'Cliente(PF) excluído com sucesso!')
         return redirect('cliente:listar_clientesPF')
     template_name = 'confirmar_delete.html'
     context = {
-        'objeto': clientePF,
+        'objeto': cliente_pf_obj,
         'title': 'Excluir cliente',
         'mensagem': 'Tem certeza que quer deletar o Cliente (PF): ',
         'clientePF': True

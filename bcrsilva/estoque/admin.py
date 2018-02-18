@@ -17,13 +17,13 @@ class ItemNotaInlineAdmin(admin.StackedInline):
 
 class NotaEntradaAdmin(admin.ModelAdmin):
     list_display = [
-        'fornecedor', 'tipo_entrada', 'data_entrada', 'data_emissao', 'status', 'TOTAL'
+        'fornecedor', 'tipo_entrada', 'data_entrada', 'data_emissao', 'status', 'get_calculo_total'
     ]
     search_fields = ['fornecedor', 'data_entrada', 'status']
     list_filter = ['data_entrada', 'data_emissao', 'status', 'tipo_entrada']
     inlines = [ItemNotaInlineAdmin]
 
-    def TOTAL(self, obj):
+    def get_calculo_total(self, obj):
         total = 0
         for item in obj.itensNota.all():
             total += item.valor
