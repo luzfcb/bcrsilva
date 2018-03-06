@@ -24,11 +24,6 @@ class CategoriaForm(forms.ModelForm):
             )
         }
 
-        # labels = {
-        #     'nome': 'Nome'
-        # }
-
-
 class ProdutoForm(forms.ModelForm):
     class Meta:
         model = Produto

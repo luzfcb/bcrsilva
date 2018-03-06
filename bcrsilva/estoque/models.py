@@ -65,6 +65,6 @@ class ItemNota(models.Model):
     criado_em = models.DateTimeField('Criado em', auto_now_add=True)
     atualizado_em = models.DateTimeField('Atualizado em', auto_now=True)
 
-    def save(self, *args, **kwargs):
-        self.valor = self.produto.preco_custo * self.quantidade
-        super().save(*args, **kwargs)
+    # def save(self, *args, **kwargs):
+    #     self.valor = self.produto.preco_custo * self.quantidade
+    #     super().save(*args, **kwargs)

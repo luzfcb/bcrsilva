@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+
+{% load widget_tweaks %}
+
+{% block content %}
+  <div class="card card-register mx-auto" style="max-width: 100%;">
+    <div class="card-header"><b>{{ title }}</b></div>
+    <div class="card-body">
+      <form method="POST">
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+        <div class="form-row">
+          <div class="form-group col-md-2">
+            {{ form.data_entrada.label_tag }}
+            {{ form.data_entrada }}
+            {{ form.data_entrada.errors }}
+          </div>
+          <div class="form-group col-md-2">
+            {{ form.data_emissao.label_tag }}
+            {{ form.data_emissao }}
+            {{ form.data_emissao.errors }}
+          </div>
+          <div class="form-group col-md-2">
+            {{ form.status.label_tag }}
+            {{ form.status }}
+            {{ form.status.errors }}
+          </div>
+          <div class="form-group col-md-6">
+            {{ form.fornecedor.label_tag }}
+            {{ form.fornecedor }}
+            {{ form.fornecedor.errors }}
+          </div>
+          <div class="form-group col-md-4">
+            {{ form.descricao.label_tag }}
+            {{ form.descricao }}
+            {{ form.descricao.errors }}
+          </div>
+          <div class="form-group col-md-2">
+            {{ form.tipo_entrada.label_tag }}
+            {{ form.tipo_entrada }}
+            {{ form.tipo_entrada.errors }}
+          </div>
+        </div>
+
+        {{ formset.management_form }}
+
+          <div class="card card-register mx-auto" style="max-width: 100%; margin-bottom: 1em;">
+            <div class="card-header"><b>Produto(s)</b></div>
+            <div class="card-body">
+              <div class="form-row">
+                {% for form in formset %}
+                  {{ form.id }}
+                  <div class="form-group" style="width: 45%; margin-right: 10px;">
+                    {{ form.produto.label_tag }}
+  			            {{ form.produto }}
+  			            {{ form.produto.errors }}
+                  </div>
+                  <div class="form-group" style="width: 45%; margin-right: 10px;">
+  									{{ form.quantidade.label_tag }}
+  			            {{ form.quantidade }}
+  			            {{ form.quantidade.errors }}
+                  </div>
+                  <div class="form-group" style="margin-top: 3%;">
+                    {{ form.DELETE.label }}
+                    {{ form.DELETE }}
+                    <!-- <a style="border: none; margin-top: 2em;" class="form-control" href="#"
+                      title="Excluir">
+                      <i class="fa fa-trash-o fa-lg"></i>
+                    </a> -->
+                  </div>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+        <button type="submit" class="btn btn-success">Salvar</button>
+        <a class="btn btn-secondary" href="{% url 'estoque:home' %}">Voltar</a>
+      </form>
+    </div>
+  </div>
+{% endblock %}

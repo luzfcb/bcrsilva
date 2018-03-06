@@ -109,7 +109,7 @@ class ClientePFForm(forms.ModelForm):
                     'placeholder': 'Insira o RG'
                 }
             ),
-            'data_nascimento': forms.TextInput(
+            'data_nascimento': forms.DateInputInput(
                 attrs={
                     'class': 'form-control',
                     'placeholder': 'Insira a data'

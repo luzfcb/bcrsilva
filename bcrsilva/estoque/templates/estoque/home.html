@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="card mb-3">
+  <div class="card-header" style="height: 65px;">
+    <div class="form-row" style="height: 40px;">
+      <div class="form-group col-md-11" style="padding-top: 6px;">
+        <i class="fa fa-table fa-lg"></i> <b>Notas registradas (Entrada)</b>
+      </div>
+      <div class="form-group col-md-1" style="padding-left: 30px;">
+        <a class="btn btn-success" href="{% url 'estoque:nova_notaEntrada' %}" title="Nova entrada">
+          <i class="fa fa-plus fa-lg" aria-hidden="true"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+          <thead>
+            <tr>
+              <th>Data da Entrada</th>
+              <th>Data da Emissão</th>
+              <th>Fornecedor</th>
+              <th>Total</th>
+              <th>Produto(s)</th>
+              <th style="text-align: center; width: 13%;">Ações</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for nota in notasEntrada %}
+              <tr>
+                <td>{{ nota.data_entrada }}</td>
+                <td>{{ nota.data_emissao }}</td>
+                <td>{{ nota.fornecedor }}</td>
+                <td>{{ nota.total }}</td>
+                <td>
+                  {% for item in nota.itensNota.all %}
+                    {{ item.produto }} <br>
+                  {% endfor %}
+                </td>
+{#                <!-- <td style="text-align: center;">{{ produto.preco_anterior|default_if_none:"-" }}</td> -->#}
+                <td>
+                  <div class="container">
+                    <div class="row">
+                      <div class="col">
+                        <a href="{% url 'estoque:editar_notaEntrada' nota.id %}"
+                          title="Editar">
+                          <i class="fa fa-pencil fa-lg"></i>
+                        </a>
+                      </div>
+                      <div class="col">
+                        <a href="{% url 'estoque:excluir_notaEntrada' nota.id %}"
+                          title="Excluir">
+                          <i class="fa fa-trash-o fa-lg"></i>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="card-footer small text-muted">Atualizado em {{ atualizado_em }}</div>
+  </div>
+{% endblock %}
