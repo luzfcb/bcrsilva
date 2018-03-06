@@ -63,10 +63,12 @@ def editar_clientePJ(request, pk):
         )
         if form.is_valid() and contato_forms.is_valid():
             form.save()
-            contatos = contato_forms.save(commit=False)
-            for contato in contatos:
-                contato.pessoa = clientePJ
-                contato.save()
+            instances = contato_forms.save(commit=False)
+            for obj in instances:
+                obj.pessoa = clientePJ
+                obj.save()
+            for obj in contato_forms.deleted_objects:
+                obj.delete()
             messages.success(request, 'Cliente(PJ) alterado com sucesso!')
             return redirect('cliente:listar_clientesPJ')
     template_name = 'cliente/editar_clientePJ.html'
@@ -151,10 +153,12 @@ def editar_clientePF(request, pk):
         )
         if form.is_valid() and contato_forms.is_valid():
             form.save()
-            contatos = contato_forms.save(commit=False)
-            for contato in contatos:
-                contato.pessoa = clientePF
-                contato.save()
+            instances = contato_forms.save(commit=False)
+            for obj in instances:
+                obj.pessoa = clientePF
+                obj.save()
+            for obj in contato_forms.deleted_objects:
+                obj.delete()
             messages.success(request, 'Cliente(PF) alterado com sucesso!')
             return redirect('cliente:listar_clientesPF')
     template_name = 'cliente/editar_clientePF.html'

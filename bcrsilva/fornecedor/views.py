@@ -63,10 +63,12 @@ def editar_fornecedor(request, pk):
         )
         if form.is_valid() and contato_forms.is_valid():
             form.save()
-            contatos = contato_forms.save(commit=False)
-            for contato in contatos:
-                contato.pessoa = fornecedor
-                contato.save()
+            instances = contato_forms.save(commit=False)
+            for obj in instances:
+                obj.pessoa = fornecedor
+                obj.save()
+            for obj in contato_forms.deleted_objects:
+                obj.delete()
             messages.success(request, 'Fornecedor alterado com sucesso!')
             return redirect('fornecedor:home')
     template_name = 'fornecedor/editar_fornecedor.html'

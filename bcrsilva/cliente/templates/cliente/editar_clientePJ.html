@@ -3,7 +3,7 @@
 {% load widget_tweaks %}
 
 {% block content %}
-  <div class="card card-register mx-auto" style="max-width: 80%;">
+  <div class="card card-register mx-auto" style="max-width: 100%;">
     <div class="card-header"><b>{{ title }}</b></div>
     <div class="card-body">
       <form method="POST">
@@ -70,18 +70,19 @@
               <div class="form-row">
                 {% for form in formset %}
                   {{ form.id }}
-                  <div class="form-group" style="width: 47.5%; margin-right: 10px;">
+                  <div class="form-group" style="width: 45%; margin-right: 10px;">
                     {{ form.email.label_tag }}
   			            {{ form.email }}
   			            {{ form.email.errors }}
                   </div>
-                  <div class="form-group" style="width: 47.5%; margin-right: 10px;">
+                  <div class="form-group" style="width: 45%; margin-right: 10px;">
   									{{ form.telefone.label_tag }}
   			            {{ form.telefone }}
   			            {{ form.telefone.errors }}
                   </div>
-                  <div class="form-group">
-                    <!-- {{ form.DELETE }} -->
+                  <div class="form-group" style="margin-top: 3%;">
+                    {{ form.DELETE.label }}
+                    {{ form.DELETE }}
                     <!-- <a style="border: none; margin-top: 2em;" class="form-control" href="#"
                       title="Excluir">
                       <i class="fa fa-trash-o fa-lg"></i>
