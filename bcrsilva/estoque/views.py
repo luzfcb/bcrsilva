@@ -32,9 +32,8 @@ def nova_notaEntrada(request):
             totalNota = 0
             itensNota = itensNota_forms.save(commit=False)
             for item in itensNota:
-                total = item.produto.preco_custo * item.quantidade
-                totalNota += total
-                item.valor = total
+                item.valor = item.produto.preco_custo * item.quantidade
+                totalNota += item.valor
                 item.nota = notaEntrada
                 item.save()
             notaEntrada.total = totalNota
@@ -64,13 +63,16 @@ def editar_notaEntrada(request, pk):
         )
         if form.is_valid() and itensNota_forms.is_valid():
             nota = form.save(commit=False)
-            nota.save()
-            instances = itensNota_forms.save(commit=False)
-            for obj in instances:
-                obj.nota = notaEntrada
-                obj.save()
+            itensNota = itensNota_forms.save(commit=False)
+            for item in itensNota:
+                item.valor = item.produto.preco_custo * item.quantidade
+                nota.total += item.valor
+                item.nota = nota
+                item.save()
             for obj in itensNota_forms.deleted_objects:
+                nota.total -= obj.produto.preco_custo * obj.quantidade
                 obj.delete()
+            nota.save()
             messages.success(request, 'Nota(Entrada) alterada com sucesso!')
             return redirect('estoque:home')
     template_name = 'estoque/editar_notaEntrada.html'
